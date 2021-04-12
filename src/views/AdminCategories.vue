@@ -168,6 +168,7 @@ export default {
       });
     },
     updateCategory({ categoryId, name }) {
+      console.log(name);
       this.toggleIsEditing(categoryId);
     },
     handleCancel(categoryId) {
