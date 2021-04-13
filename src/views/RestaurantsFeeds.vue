@@ -1,8 +1,10 @@
 <template>
   <div class="container py-5">
     <NavTabs />
-    <h1 class="mt-5">最新動態</h1>
-    <hr />
+    <h1 class="mt-5">
+      最新動態
+    </h1>
+    <hr>
     <div class="row">
       <div class="col-md-6">
         <h3>最新餐廳</h3>
@@ -19,44 +21,44 @@
 </template>
 
 <script>
-import NavTabs from "./../components/NavTabs";
-import NewestRestaurants from "./../components/NewestRestaurants";
-import NewestComments from "./../components/NewestComments";
-import restaurantsAPI from "./../apis/restaurants";
-import { Toast } from "./../utils/helpers";
+import NavTabs from './../components/NavTabs'
+import NewestRestaurants from './../components/NewestRestaurants'
+import NewestComments from './../components/NewestComments'
+import restaurantsAPI from './../apis/restaurants'
+import { Toast } from './../utils/helpers'
 
 export default {
-  name: "RestaurantsFeeds",
+  name: 'RestaurantsFeeds',
   components: {
     NavTabs,
     NewestRestaurants,
-    NewestComments,
+    NewestComments
   },
-  data() {
+  data () {
     return {
       restaurants: [],
-      comments: [],
-    };
+      comments: []
+    }
   },
-  created() {
-    this.fetchFeeds();
+  created () {
+    this.fetchFeeds()
   },
   methods: {
-    async fetchFeeds() {
+    async fetchFeeds () {
       try {
-        const { data } = await restaurantsAPI.getFeeds();
-        const { restaurants, comments } = data;
-        this.restaurants = restaurants;
+        const { data } = await restaurantsAPI.getFeeds()
+        const { restaurants, comments } = data
+        this.restaurants = restaurants
         this.comments = comments.filter(
           (comment) => comment.Restaurant && comment.text
-        );
+        )
       } catch (error) {
         Toast.fire({
-          icon: "error",
-          title: "無法取得最新動態，請稍後再試",
-        });
+          icon: 'error',
+          title: '無法取得最新動態，請稍後再試'
+        })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

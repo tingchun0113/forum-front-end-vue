@@ -11,7 +11,7 @@
         class="img-responsive center-block"
         :src="restaurant.image"
         style="width: 250px; margin-bottom: 25px"
-      />
+      >
       <div class="contact-info-wrap">
         <ul class="list-unstyled">
           <li>
@@ -34,38 +34,39 @@
       <router-link
         class="btn btn-primary btn-border mr-2"
         :to="{ name: 'restaurant-dashboard', params: { id: restaurant.id } }"
-        >Dashboard</router-link
       >
+        Dashboard
+      </router-link>
 
       <button
         v-if="restaurant.isFavorited"
-        @click.stop.prevent="deleteFavorite"
         type="button"
         class="btn btn-danger btn-border mr-2"
+        @click.stop.prevent="deleteFavorite"
       >
         移除最愛
       </button>
       <button
         v-else
-        @click.stop.prevent="addFavorite"
         type="button"
         class="btn btn-primary btn-border mr-2"
+        @click.stop.prevent="addFavorite"
       >
         加到最愛
       </button>
       <button
         v-if="restaurant.isLiked"
-        @click.stop.prevent="deleteLike"
         type="button"
         class="btn btn-danger like mr-2"
+        @click.stop.prevent="deleteLike"
       >
         Unlike
       </button>
       <button
         v-else
-        @click.stop.prevent="addLike"
         type="button"
         class="btn btn-primary like mr-2"
+        @click.stop.prevent="addLike"
       >
         Like
       </button>
@@ -78,39 +79,39 @@ export default {
   props: {
     initialRestaurant: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
-  data() {
+  data () {
     return {
-      restaurant: this.initialRestaurant,
-    };
+      restaurant: this.initialRestaurant
+    }
   },
   methods: {
-    addFavorite() {
+    addFavorite () {
       this.restaurant = {
         ...this.restaurant,
-        isFavorited: true,
-      };
+        isFavorited: true
+      }
     },
-    deleteFavorite() {
+    deleteFavorite () {
       this.restaurant = {
         ...this.restaurant,
-        isFavorited: false,
-      };
+        isFavorited: false
+      }
     },
-    addLike() {
+    addLike () {
       this.restaurant = {
         ...this.restaurant,
-        isLiked: true,
-      };
+        isLiked: true
+      }
     },
-    deleteLike() {
+    deleteLike () {
       this.restaurant = {
         ...this.restaurant,
-        isLiked: false,
-      };
-    },
-  },
-};
+        isLiked: false
+      }
+    }
+  }
+}
 </script>

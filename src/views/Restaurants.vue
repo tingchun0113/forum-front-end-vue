@@ -26,22 +26,22 @@
 </template>
 
 <script>
-import NavTabs from "./../components/NavTabs";
-import RestaurantCard from "./../components/RestaurantCard";
-import RestaurantsNavPills from "./../components/RestaurantsNavPills";
-import RestaurantsPagination from "./../components/RestaurantsPagination";
-import restaurantsAPI from "./../apis/restaurants";
-import { Toast } from "./../utils/helpers";
+import NavTabs from './../components/NavTabs'
+import RestaurantCard from './../components/RestaurantCard'
+import RestaurantsNavPills from './../components/RestaurantsNavPills'
+import RestaurantsPagination from './../components/RestaurantsPagination'
+import restaurantsAPI from './../apis/restaurants'
+import { Toast } from './../utils/helpers'
 
 export default {
-  name: "Restaurants",
+  name: 'Restaurants',
   components: {
     NavTabs,
     RestaurantCard,
     RestaurantsNavPills,
-    RestaurantsPagination,
+    RestaurantsPagination
   },
-  data() {
+  data () {
     return {
       restaurants: [],
       categories: [],
@@ -49,28 +49,28 @@ export default {
       currentPage: 1,
       totalPage: [],
       previousPage: -1,
-      nextPage: -1,
-    };
+      nextPage: -1
+    }
   },
-  created() {
-    const { page = "", categoryId = "" } = this.$route.query;
+  created () {
+    const { page = '', categoryId = '' } = this.$route.query
     this.fetchRestaurants({
       queryPage: page,
-      queryCategoryId: categoryId,
-    });
+      queryCategoryId: categoryId
+    })
   },
-  beforeRouteUpdate(to, from, next) {
-    const { page = "", categoryId = "" } = to.query;
-    this.fetchRestaurants({ queryPage: page, queryCategoryId: categoryId });
-    next();
+  beforeRouteUpdate (to, from, next) {
+    const { page = '', categoryId = '' } = to.query
+    this.fetchRestaurants({ queryPage: page, queryCategoryId: categoryId })
+    next()
   },
   methods: {
-    async fetchRestaurants({ queryPage, queryCategoryId }) {
+    async fetchRestaurants ({ queryPage, queryCategoryId }) {
       try {
         const response = await restaurantsAPI.getRestaurants({
           page: queryPage,
-          categoryId: queryCategoryId,
-        });
+          categoryId: queryCategoryId
+        })
         const {
           restaurants,
           categories,
@@ -78,24 +78,24 @@ export default {
           page,
           totalPage,
           prev,
-          next,
-        } = response.data;
+          next
+        } = response.data
 
-        this.restaurants = restaurants;
-        this.categories = categories;
-        this.categoryId = categoryId;
-        this.currentPage = page;
-        this.totalPage = totalPage;
-        this.previousPage = prev;
-        this.nextPage = next;
+        this.restaurants = restaurants
+        this.categories = categories
+        this.categoryId = categoryId
+        this.currentPage = page
+        this.totalPage = totalPage
+        this.previousPage = prev
+        this.nextPage = next
       } catch (error) {
-        console.log("error", error);
+        console.log('error', error)
         Toast.fire({
-          icon: "error",
-          title: "無法取得餐廳資料，請稍後再試",
-        });
+          icon: 'error',
+          title: '無法取得餐廳資料，請稍後再試'
+        })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

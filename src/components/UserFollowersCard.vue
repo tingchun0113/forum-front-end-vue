@@ -14,21 +14,21 @@
           width="60"
           height="60"
           class="mr-1"
-        />
+        >
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { emptyImageFilter } from "./../utils/mixins";
+import { emptyImageFilter } from './../utils/mixins'
 export default {
   mixins: [emptyImageFilter],
   props: {
     followers: {
       type: Array,
-      default: () => [],
-    },
-  },
-};
+      default: () => []
+    }
+  }
+}
 </script>

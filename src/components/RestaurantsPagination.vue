@@ -54,24 +54,24 @@ export default {
   props: {
     categoryId: {
       type: [String, Number],
-      default: "",
+      default: ''
     },
     currentPage: {
       type: Number,
-      default: 1,
+      default: 1
     },
     totalPage: {
       type: Array,
-      required: true,
+      required: true
     },
     previousPage: {
       type: Number,
-      required: true,
+      required: true
     },
     nextPage: {
       type: Number,
-      required: true,
-    },
-  },
-};
+      required: true
+    }
+  }
+}
 </script>

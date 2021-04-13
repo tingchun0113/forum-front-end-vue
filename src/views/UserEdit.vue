@@ -11,7 +11,7 @@
           class="form-control"
           placeholder="Enter Name"
           required
-        />
+        >
       </div>
 
       <div class="form-group">
@@ -22,7 +22,7 @@
           class="d-block img-thumbnail mb-3"
           width="200"
           height="200"
-        />
+        >
 
         <input
           id="image"
@@ -31,10 +31,14 @@
           accept="image/*"
           class="form-control-file"
           @change="handleFileChange"
-        />
+        >
       </div>
 
-      <button type="submit" class="btn btn-primary" :disabled="isProcessing">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        :disabled="isProcessing"
+      >
         {{ isProcessing ? "資料更新中..." : "Submit" }}
       </button>
     </form>
@@ -43,40 +47,40 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       id: 0,
-      image: "",
-      name: "",
-      email: "",
-      isProcessing: false,
-    };
+      image: '',
+      name: '',
+      email: '',
+      isProcessing: false
+    }
   },
-  created() {
-    const { id } = this.$route.params;
-    this.setUser(id);
+  created () {
+    const { id } = this.$route.params
+    this.setUser(id)
   },
   methods: {
-    setUser(userId) {
-      console.log(userId);
-      const { id, image, name, email } = this.currentUser;
+    setUser (userId) {
+      console.log(userId)
+      const { id, image, name, email } = this.currentUser
 
-      this.id = id;
-      this.name = name;
-      this.email = email;
-      this.image = image;
+      this.id = id
+      this.name = name
+      this.email = email
+      this.image = image
     },
-    handleFileChange(e) {
-      const files = e.target.files;
-      if (!files.length) return;
-      const imageURL = window.URL.createObjectURL(files[0]);
-      this.image = imageURL;
+    handleFileChange (e) {
+      const files = e.target.files
+      if (!files.length) return
+      const imageURL = window.URL.createObjectURL(files[0])
+      this.image = imageURL
     },
-    handleSubmit(e) {
-      const form = e.target;
-      const formData = new FormData(form);
-      console.log(formData);
-    },
-  },
-};
+    handleSubmit (e) {
+      const form = e.target
+      const formData = new FormData(form)
+      console.log(formData)
+    }
+  }
+}
 </script>

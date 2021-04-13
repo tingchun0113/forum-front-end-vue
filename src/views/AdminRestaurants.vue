@@ -3,7 +3,10 @@
     <!-- 後台導覽頁籤 AdminNav -->
     <AdminNav />
 
-    <router-link to="/admin/restaurants/new" class="btn btn-primary mb-4">
+    <router-link
+      to="/admin/restaurants/new"
+      class="btn btn-primary mb-4"
+    >
       New Restaurant
     </router-link>
 
@@ -13,13 +16,13 @@
 </template>
 
 <script>
-import AdminNav from "./../components/AdminNav";
-import AdminRestaurantsTable from "./../components/AdminRestaurantsTable";
+import AdminNav from './../components/AdminNav'
+import AdminRestaurantsTable from './../components/AdminRestaurantsTable'
 
 export default {
   components: {
     AdminNav,
-    AdminRestaurantsTable,
-  },
-};
+    AdminRestaurantsTable
+  }
+}
 </script>

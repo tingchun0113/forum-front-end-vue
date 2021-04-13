@@ -2,7 +2,11 @@
   <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img :src="user.image | emptyImage" width="300px" height="300px" />
+        <img
+          :src="user.image | emptyImage"
+          width="300px"
+          height="300px"
+        >
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -59,38 +63,38 @@
 </template>
 
 <script>
-import { emptyImageFilter } from "./../utils/mixins";
+import { emptyImageFilter } from './../utils/mixins'
 
 export default {
   mixins: [emptyImageFilter],
   props: {
     user: {
       type: Object,
-      required: true,
+      required: true
     },
     isCurrentUser: {
       type: Boolean,
-      required: true,
+      required: true
     },
     initialIsFollowed: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
-  data() {
+  data () {
     return {
-      isFollowed: this.initialIsFollowed,
-    };
+      isFollowed: this.initialIsFollowed
+    }
   },
   methods: {
-    addFollowing(userId) {
-      console.log(userId);
-      this.isFollowed = true;
+    addFollowing (userId) {
+      console.log(userId)
+      this.isFollowed = true
     },
-    deleteFollowing(userId) {
-      console.log(userId);
-      this.isFollowed = false;
-    },
-  },
-};
+    deleteFollowing (userId) {
+      console.log(userId)
+      this.isFollowed = false
+    }
+  }
+}
 </script>

@@ -10,7 +10,7 @@
             type="text"
             class="form-control"
             placeholder="新增餐廳類別..."
-          />
+          >
         </div>
         <div class="col-auto">
           <button
@@ -26,18 +26,36 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col" width="60">#</th>
-          <th scope="col">Category Name</th>
-          <th scope="col" width="210">Action</th>
+          <th
+            scope="col"
+            width="60"
+          >
+            #
+          </th>
+          <th scope="col">
+            Category Name
+          </th>
+          <th
+            scope="col"
+            width="210"
+          >
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="category in categories" :key="category.id">
+        <tr
+          v-for="category in categories"
+          :key="category.id"
+        >
           <th scope="row">
             {{ category.id }}
           </th>
           <td class="position-relative">
-            <div v-show="!category.isEditing" class="category-name">
+            <div
+              v-show="!category.isEditing"
+              class="category-name"
+            >
               {{ category.name }}
             </div>
             <input
@@ -45,7 +63,7 @@
               v-model="category.name"
               type="text"
               class="form-control"
-            />
+            >
             <span
               v-show="category.isEditing"
               class="cancel"
@@ -88,105 +106,105 @@
 </template>
 
 <script>
-import AdminNav from "@/components/AdminNav";
-import { v4 as uuidv4 } from "uuid";
+import AdminNav from '@/components/AdminNav'
+import { v4 as uuidv4 } from 'uuid'
 
 const dummyData = {
   categories: [
     {
       id: 1,
-      name: "中式料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z",
+      name: '中式料理',
+      createdAt: '2019-06-22T09:00:43.000Z',
+      updatedAt: '2019-06-22T09:00:43.000Z'
     },
     {
       id: 2,
-      name: "日本料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z",
+      name: '日本料理',
+      createdAt: '2019-06-22T09:00:43.000Z',
+      updatedAt: '2019-06-22T09:00:43.000Z'
     },
     {
       id: 3,
-      name: "義大利料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z",
+      name: '義大利料理',
+      createdAt: '2019-06-22T09:00:43.000Z',
+      updatedAt: '2019-06-22T09:00:43.000Z'
     },
     {
       id: 4,
-      name: "墨西哥料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z",
-    },
-  ],
-};
+      name: '墨西哥料理',
+      createdAt: '2019-06-22T09:00:43.000Z',
+      updatedAt: '2019-06-22T09:00:43.000Z'
+    }
+  ]
+}
 
 export default {
-  name: "AdminCategories",
+  name: 'AdminCategories',
   components: {
-    AdminNav,
+    AdminNav
   },
-  data() {
+  data () {
     return {
       categories: [],
-      newCategoryName: "",
-    };
+      newCategoryName: ''
+    }
   },
-  created() {
-    this.fetchCategories();
+  created () {
+    this.fetchCategories()
   },
   methods: {
-    fetchCategories() {
+    fetchCategories () {
       this.categories = dummyData.categories.map((category) => ({
         ...category,
         isEditing: false,
-        nameCached: "",
-      }));
+        nameCached: ''
+      }))
     },
-    createCategory() {
+    createCategory () {
       this.categories.push({
         id: uuidv4(),
-        name: this.newCategoryName,
-      });
-      this.newCategoryName = "";
+        name: this.newCategoryName
+      })
+      this.newCategoryName = ''
     },
-    deleteCategory(categoryId) {
+    deleteCategory (categoryId) {
       this.categories = this.categories.filter(
         (category) => category.id !== categoryId
-      );
+      )
     },
-    toggleIsEditing(categoryId) {
+    toggleIsEditing (categoryId) {
       this.categories = this.categories.map((category) => {
         if (category.id === categoryId) {
           return {
             ...category,
             isEditing: !category.isEditing,
-            nameCached: category.name,
-          };
+            nameCached: category.name
+          }
         }
 
-        return category;
-      });
+        return category
+      })
     },
-    updateCategory({ categoryId, name }) {
-      console.log(name);
-      this.toggleIsEditing(categoryId);
+    updateCategory ({ categoryId, name }) {
+      console.log(name)
+      this.toggleIsEditing(categoryId)
     },
-    handleCancel(categoryId) {
+    handleCancel (categoryId) {
       this.categories = this.categories.map((category) => {
         if (category.id === categoryId) {
           return {
             ...category,
-            name: category.nameCached,
-          };
+            name: category.nameCached
+          }
         }
 
-        return category;
-      });
+        return category
+      })
 
-      this.toggleIsEditing(categoryId);
-    },
-  },
-};
+      this.toggleIsEditing(categoryId)
+    }
+  }
+}
 </script>
 
 <style scoped>
