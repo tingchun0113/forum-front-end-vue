@@ -7,7 +7,7 @@
         alt="Card image cap"
         width="286px"
         height="180px"
-      />
+      >
       <div class="card-body">
         <p class="card-text title-wrap">
           <router-link
@@ -62,101 +62,101 @@
 </template>
 
 <script>
-import { emptyImageFilter } from "./../utils/mixins";
-import usersAPI from "./../apis/users";
-import { Toast } from "./../utils/helpers";
+import { emptyImageFilter } from './../utils/mixins'
+import usersAPI from './../apis/users'
+import { Toast } from './../utils/helpers'
 
 export default {
-  name: "RestaurantCard",
+  name: 'RestaurantCard',
   mixins: [emptyImageFilter],
   props: {
     initialRestaurant: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
-  data() {
+  data () {
     return {
-      restaurant: this.initialRestaurant,
-    };
+      restaurant: this.initialRestaurant
+    }
   },
   methods: {
-    async addFavorite(restaurantId) {
+    async addFavorite (restaurantId) {
       try {
-        const { data } = await usersAPI.addFavorite({ restaurantId });
-        if (data.status !== "success") {
-          throw new Error(data.message);
+        const { data } = await usersAPI.addFavorite({ restaurantId })
+        if (data.status !== 'success') {
+          throw new Error(data.message)
         }
         this.restaurant = {
           ...this.restaurant, // 保留餐廳內原有資料
-          isFavorited: true,
-        };
+          isFavorited: true
+        }
       } catch (error) {
         Toast.fire({
-          icon: "error",
-          title: "無法將餐廳加入最愛，請稍後再試",
-        });
-        console.log("error", error);
+          icon: 'error',
+          title: '無法將餐廳加入最愛，請稍後再試'
+        })
+        console.log('error', error)
       }
     },
-    async deleteFavorite(restaurantId) {
+    async deleteFavorite (restaurantId) {
       try {
-        const { data } = await usersAPI.deleteFavorite({ restaurantId });
-        if (data.status !== "success") {
-          throw new Error(data.message);
+        const { data } = await usersAPI.deleteFavorite({ restaurantId })
+        if (data.status !== 'success') {
+          throw new Error(data.message)
         }
         this.restaurant = {
           ...this.restaurant, // 保留餐廳內原有資料
-          isFavorited: false,
-        };
+          isFavorited: false
+        }
       } catch (error) {
         Toast.fire({
-          icon: "error",
-          title: "無法將餐廳移除最愛，請稍後再試",
-        });
-        console.log("error", error);
+          icon: 'error',
+          title: '無法將餐廳移除最愛，請稍後再試'
+        })
+        console.log('error', error)
       }
     },
-    async addLike(restaurantId) {
+    async addLike (restaurantId) {
       try {
-        const { data } = await usersAPI.addLike({ restaurantId });
+        const { data } = await usersAPI.addLike({ restaurantId })
 
-        if (data.status !== "success") {
-          throw new Error(data.message);
+        if (data.status !== 'success') {
+          throw new Error(data.message)
         }
 
         this.restaurant = {
           ...this.restaurant,
-          isLiked: true,
-        };
+          isLiked: true
+        }
       } catch (error) {
-        console.log("error", error);
+        console.log('error', error)
         Toast.fire({
-          icon: "error",
-          title: "無法對餐廳按讚，請稍後再試",
-        });
+          icon: 'error',
+          title: '無法對餐廳按讚，請稍後再試'
+        })
       }
     },
-    async deleteLike(restaurantId) {
+    async deleteLike (restaurantId) {
       try {
-        const { data } = await usersAPI.deleteLike({ restaurantId });
+        const { data } = await usersAPI.deleteLike({ restaurantId })
 
-        if (data.status !== "success") {
-          throw new Error(data.message);
+        if (data.status !== 'success') {
+          throw new Error(data.message)
         }
 
         this.restaurant = {
           ...this.restaurant,
-          isLiked: true,
-        };
+          isLiked: true
+        }
       } catch (error) {
-        console.log("error", error);
+        console.log('error', error)
         Toast.fire({
-          icon: "error",
-          title: "無法對餐廳按讚，請稍後再試",
-        });
+          icon: 'error',
+          title: '無法對餐廳按讚，請稍後再試'
+        })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

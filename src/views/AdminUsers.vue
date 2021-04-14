@@ -56,6 +56,8 @@
 
 <script>
 import AdminNav from './../components/AdminNav'
+import adminAPI from './../apis/admin'
+import { Toast } from './../utils/helpers'
 
 export default {
   components: {
@@ -63,15 +65,31 @@ export default {
   },
   data () {
     return {
-      users: []
+      users: [],
+      isLoading: true
     }
   },
   created () {
     this.fetchUsers()
   },
   methods: {
-    fetchUsers () {
-      this.users
+    async fetchUsers () {
+      try {
+        this.isLoading = true
+        const { data } = await adminAPI.users.get()
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+        this.users = data.users
+        this.isLoading = false
+      } catch (error) {
+        console.error(error.message)
+        this.isLoading = false
+        Toast.fire({
+          icon: 'error',
+          title: '無法取得會員資料，請稍後再試'
+        })
+      }
     },
     toggleUserRole ({ userId, isAdmin }) {
       this.users = this.users.map((user) => {
