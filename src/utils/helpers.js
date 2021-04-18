@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use(
 
     // 如果 token 存在的話，則帶入到 headers 當中
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`
+      config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },

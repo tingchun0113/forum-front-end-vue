@@ -102,7 +102,7 @@ export default {
 
         this.restaurantComments = Comments
         this.isLoading = false
-      } catch(error) {
+      } catch (error) {
         console.error(error.message)
         this.isLoading = false
         Toast.fire({

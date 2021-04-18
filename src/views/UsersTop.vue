@@ -77,11 +77,9 @@ export default {
         this.isLoading = true
         const { data } = await usersAPI.getTopUsers()
 
-
         if (data.status === 'error') {
           throw new Error(data.message)
         }
-
 
         this.users = data.users.map((user) => ({
           id: user.id,

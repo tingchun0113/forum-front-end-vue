@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-//import usersAPI from './../apis/users'
+import usersAPI from './../apis/users'
 
 Vue.use(Vuex)
 
@@ -42,10 +42,9 @@ export default new Vuex.Store({
           name,
           email,
           image,
-          isAdmin,
+          isAdmin
         })
         return true
-
       } catch (error) {
         console.error('can not fetch user information')
         commit('revokeAuthentication')

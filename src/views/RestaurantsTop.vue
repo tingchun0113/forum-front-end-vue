@@ -129,7 +129,7 @@ export default {
             isFavorited: true
           }
         })
-        .sort((a, b) => b.FavoriteCount - a.FavoriteCount)
+          .sort((a, b) => b.FavoriteCount - a.FavoriteCount)
       } catch (error) {
         Toast.fire({
           icon: 'error',
@@ -155,7 +155,7 @@ export default {
             isFavorited: false
           }
         })
-        .sort((a, b) => b.FavoriteCount - a.FavoriteCount)
+          .sort((a, b) => b.FavoriteCount - a.FavoriteCount)
       } catch (error) {
         Toast.fire({
           icon: 'error',

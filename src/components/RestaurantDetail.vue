@@ -188,4 +188,3 @@ export default {
   font-size: 17px;
 }
 </style>
-

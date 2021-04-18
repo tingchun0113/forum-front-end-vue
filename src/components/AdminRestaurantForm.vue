@@ -191,7 +191,7 @@ export default {
     },
     handleFileChange (e) {
       const { files } = e.target
-      
+
       if (files.length === 0) {
         this.restaurant.image = ''
       } else {

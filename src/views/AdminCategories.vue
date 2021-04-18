@@ -111,7 +111,7 @@ import AdminNav from '@/components/AdminNav'
 import adminAPI from './../apis/admin'
 import { Toast } from './../utils/helpers'
 import Spinner from './../components/Spinner'
-//import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
 
 export default {
   name: 'AdminCategories',
