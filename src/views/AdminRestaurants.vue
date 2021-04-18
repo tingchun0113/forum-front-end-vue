@@ -20,6 +20,7 @@ import AdminNav from './../components/AdminNav'
 import AdminRestaurantsTable from './../components/AdminRestaurantsTable'
 
 export default {
+  name: 'AdminRestaurants',
   components: {
     AdminNav,
     AdminRestaurantsTable

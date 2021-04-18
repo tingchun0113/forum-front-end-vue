@@ -55,19 +55,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AdminNav from './../components/AdminNav'
 import adminAPI from './../apis/admin'
 import { Toast } from './../utils/helpers'
+import Spinner from './../components/Spinner'
 
 export default {
   components: {
-    AdminNav
+    AdminNav,
+    Spinner
   },
   data () {
     return {
       users: [],
       isLoading: true
     }
+  },
+  computed: {
+    ...mapState(['currentUser'])
   },
   created () {
     this.fetchUsers()
@@ -77,9 +83,11 @@ export default {
       try {
         this.isLoading = true
         const { data } = await adminAPI.users.get()
+
         if (data.status === 'error') {
           throw new Error(data.message)
         }
+
         this.users = data.users
         this.isLoading = false
       } catch (error) {
@@ -91,16 +99,31 @@ export default {
         })
       }
     },
-    toggleUserRole ({ userId, isAdmin }) {
-      this.users = this.users.map((user) => {
-        if (user.id === userId) {
-          return {
-            ...user,
-            isAdmin: !isAdmin
-          }
+    async toggleUserRole ({ userId, isAdmin }) {
+      try {
+        const { data } = await adminAPI.users.update({
+          userId,
+          isAdmin: (!isAdmin).toString()
+        })
+        if (data.status === 'error') {
+          throw new Error(data.message)
         }
-        return user
-      })
+        this.users = this.users.map(user => {
+          if (user.id === userId) {
+            return {
+              ...user,
+              isAdmin: !isAdmin
+            }
+          }
+          return user
+        })
+      } catch (error) {
+        console.error(error.message)
+        Toast.fire({
+          icon: 'error',
+          title: '無法更新會員角色，請稍後再試'
+        })
+      }
     }
   }
 }

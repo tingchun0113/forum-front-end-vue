@@ -90,16 +90,18 @@ export default {
           email: this.email,
           password: this.password
         })
+
         const { data } = response
+
         if (data.status !== 'success') {
           throw new Error(data.message)
         }
+
         localStorage.setItem('token', data.token)
 
         this.$store.commit('setCurrentUser', data.user)
 
         this.$router.push('/restaurants')
-
       } catch (error) {
         this.isProcessing = false
         this.password = ''
@@ -108,6 +110,8 @@ export default {
           icon: 'warning',
           title: '請確認您輸入了正確的帳號密碼'
         })
+
+        console.error(error.message)
       }
     }
   }

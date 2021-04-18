@@ -23,12 +23,12 @@ export default {
       restaurant: {
         id: -1,
         name: '',
-        categoryId: '',
         tel: '',
         address: '',
+        openingHours: '',
         description: '',
         image: '',
-        openingHours: ''
+        categoryId: ''
       },
       isProcessing: false
     }
@@ -46,6 +46,7 @@ export default {
     async fetchRestaurant (restaurantId) {
       try {
         const { data } = await adminAPI.restaurants.getDetail({ restaurantId })
+
         if (data.status === 'error') {
           throw new Error(data.message)
         }
@@ -87,6 +88,7 @@ export default {
           restaurantId: this.restaurant.id,
           formData
         })
+        
         if (data.status !== 'success') {
           throw new Error(data.message)
         }
